@@ -9,13 +9,9 @@
     <parent>
         <groupId>com.vitesco.ivi</groupId>
         <artifactId>maven-test-dependencies</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.5</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
-
-    <properties>
-        <skip.assembly>false</skip.assembly>
-    </properties>
 
     <dependencies>
         <dependency>

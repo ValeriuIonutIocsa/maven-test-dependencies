@@ -10,13 +10,9 @@
     <parent>
         <groupId>com.vitesco.ivi</groupId>
         <artifactId>maven-test-dependencies</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.5</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
-
-    <properties>
-        <skip.assembly>false</skip.assembly>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -24,14 +20,28 @@
             <artifactId>lib</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.vitesco.ivi</groupId>
-            <artifactId>lib</artifactId>
-            <version>${project.version}</version>
-            <classifier>tests</classifier>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>test-compile</id>
+            <activation>
+                <property>
+                    <name>maven.test.skip</name>
+                    <value>!true</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.vitesco.ivi</groupId>
+                    <artifactId>lib</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>tests</classifier>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
     <build>
     </build>

@@ -6,7 +6,7 @@
     <groupId>com.vitesco.ivi</groupId>
     <artifactId>maven-test-dependencies</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1</version>
+    <version>0.0.5</version>
     <name>Maven Test Dependencies</name>
 
     <properties>
@@ -16,7 +16,6 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.version>0.0.1</project.version>
-        <skip.assembly>true</skip.assembly>
         <maven.test.skip>true</maven.test.skip>
     </properties>
 
@@ -40,6 +39,18 @@
         <module>dep/dep</module>
     </modules>
 
+    <profiles>
+        <profile>
+            <id>test-compile</id>
+            <activation>
+                <property>
+                    <name>maven.test.skip</name>
+                    <value>!true</value>
+                </property>
+            </activation>
+        </profile>
+    </profiles>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -51,7 +62,6 @@
                         <descriptorRefs>
                             <descriptorRef>jar-with-dependencies</descriptorRef>
                         </descriptorRefs>
-                        <skipAssembly>${skip.assembly}</skipAssembly>
                         <archive>
                             <manifest>
                                 <mainClass>com.vitesco.test.AppStart</mainClass>
