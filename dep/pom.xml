@@ -17,6 +17,11 @@
             <groupId>com.vitesco.ivi</groupId>
             <artifactId>lib</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vitesco.ivi</groupId>
+            <artifactId>lib</artifactId>
+            <version>${project.version}</version>
             <classifier>tests</classifier>
             <scope>test</scope>
         </dependency>
