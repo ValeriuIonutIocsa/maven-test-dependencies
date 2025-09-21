@@ -81,6 +81,8 @@
                         </goals>
                         <configuration>
                             <target>
+                                <echo file="${project.basedir}/../${project.name}_EXE/.gitignore" append="false"
+                                      message="*.jar"/>
                                 <copy file="${project.build.directory}/${project.build.finalName}-jar-with-dependencies.jar"
                                       tofile="${project.basedir}/../${project.name}_EXE/${project.name}.jar"/>
                             </target>
