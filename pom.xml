@@ -3,83 +3,78 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.vitesco.ivi</groupId>
+    <name>maven-test-dependencies</name>
+    <groupId>com.personal.test</groupId>
     <artifactId>maven-test-dependencies</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.5</version>
-    <name>Maven Test Dependencies</name>
+    <version>0.0.6</version>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.version>0.0.1</project.version>
-        <maven.test.skip>true</maven.test.skip>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.version>0.0.6</project.version>
+        <project.root.basedir>${project.basedir}</project.root.basedir>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.2</version>
+            <version>5.13.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.8.2</version>
+            <version>5.13.4</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <modules>
-        <module>lib/lib</module>
-        <module>dep/dep</module>
+        <module>Projects/Personal/main/main</module>
+        <module>Projects/Personal/lib/lib</module>
+        <module>Utils/Services/test-utils/test-utils</module>
     </modules>
 
-    <profiles>
-        <profile>
-            <id>test-compile</id>
-            <activation>
-                <property>
-                    <name>maven.test.skip</name>
-                    <value>!true</value>
-                </property>
-            </activation>
-        </profile>
-    </profiles>
-
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.3.0</version>
-                    <configuration>
-                        <descriptorRefs>
-                            <descriptorRef>jar-with-dependencies</descriptorRef>
-                        </descriptorRefs>
-                        <archive>
-                            <manifest>
-                                <mainClass>com.vitesco.test.AppStart</mainClass>
-                            </manifest>
-                        </archive>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>make-assembly</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>[3.6.3,)</version>
+                                </requireMavenVersion>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.19.0</version>
+                <configuration>
+                    <allowSnapshots>false</allowSnapshots>
+                    <rulesUri>file:///${project.root.basedir}/version-rules.xml</rulesUri>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
