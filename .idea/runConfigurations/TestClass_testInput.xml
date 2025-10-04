@@ -12,7 +12,7 @@
     <option name="METHOD_NAME" value="testInput" />
     <option name="TEST_OBJECT" value="method" />
     <method v="2">
-      <option name="Make" enabled="true" />
+      <option name="MakeProject" enabled="true" />
     </method>
   </configuration>
 </component>
